@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "jsx": "react",
+        "lib": ["es6", "dom", "es2017"],
+        "module": "es6",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "noUnusedLocals": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es5",
+        "esModuleInterop": true,
+        "outDir": "es",
+        "resolveJsonModule": true
+    },
+    "includes": ["./externals.d.ts"],
+    "compileOnSave": false,
+    "buildOnSave": false
+}

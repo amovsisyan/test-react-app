@@ -1,0 +1,16 @@
+# IntelliJ settings
+*.iml
+.idea/
+.DS_Store
+
+# Output folder
+dist/
+public/
+
+# Node-specific things
+node_modules/
+
+.env
+
+# bundle analyzer file
+stats.json
