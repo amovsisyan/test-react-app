@@ -74,8 +74,10 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',
+    publicPath: '/',
   },
   watchOptions: {
     ignored: '**/node_modules',
   },
+  devServer: { historyApiFallback: true, },
 };
