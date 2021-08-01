@@ -1,6 +1,7 @@
 export interface PhotoInterface {
     id: number;
     url: string
+    urlabs: string
     advertisement_id: number;
     created_at: string | null;
     updated_at: string | null;

@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import {Typography} from "antd";
 import {advertisements_delete, advertisements_getById} from "../../../services/http/mainApi";
 import {AdvertisementInterface} from "../../interfaces/GeneralInterfaces";
 import {AdvertisementItemComponent} from "../../components/Advertisement/AdvertisementItemComponent";
+
+const { Title } = Typography;
 
 export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
     const {id} = useParams();
@@ -25,11 +28,28 @@ export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
             history.push(`/advertisements`);
         }
     };
+
+    const onInputChangeHandler = (key: string, value: string) => {
+        if (advertisement) {
+            const advertisementNew = {...advertisement};
+            advertisementNew[key] = value;
+            setAdvertisement(advertisementNew);
+        }
+    };
+    
+    const onUpdateHandler = () => {
+        console.log(advertisement);
+    }
     
     return (
-        <AdvertisementItemComponent
-            advertisement={advertisement}
-            onDelete={onDeleteHandler}
-        />
+        <>
+            <Link to={`/advertisements`}><Title level={4}>Advertisements List</Title></Link>
+            <AdvertisementItemComponent
+                advertisement={advertisement}
+                onDelete={onDeleteHandler}
+                onInputChange={onInputChangeHandler}
+                onUpdate={onUpdateHandler}
+            />
+        </>
     );
 };

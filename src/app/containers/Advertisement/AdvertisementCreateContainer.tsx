@@ -1,7 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import {Typography} from "antd";
+import { useHistory, Link } from "react-router-dom";
 import {advertisements_store} from "../../../services/http/mainApi";
 import {AdvertisementCreateComponent} from "../../components/Advertisement/AdvertisementCreateComponent";
+
+const { Title } = Typography;
 
 export const AdvertisementCreateContainer: React.FC<unknown> = (props) => {
     const history = useHistory();
@@ -17,8 +20,12 @@ export const AdvertisementCreateContainer: React.FC<unknown> = (props) => {
     };
 
     return (
-        <AdvertisementCreateComponent
-            onSsave={saveHandler}
-        />
+        <>
+            <Link to={`/advertisements`}><Title level={4}>Advertisements List</Title></Link>
+            <AdvertisementCreateComponent
+                onSsave={saveHandler}
+            />
+        </>
+
     );
 };
