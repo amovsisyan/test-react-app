@@ -3,9 +3,9 @@ import {AdvertisementItemContainer} from "./containers/Advertisement/Advertiseme
 import {AdvertisementCreateContainer} from "./containers/Advertisement/AdvertisementCreateContainer";
 import {AdvertisementUpdateContainer} from "./containers/Advertisement/AdvertisementUpdateContainer";
 
-const ROUTE_ADVERTISEMENT_CREATE = '/advertisement/create';
-const ROUTE_ADVERTISEMENT = '/advertisement/:id';
-const ROUTE_ADVERTISEMENT_UPDATE = '/advertisement/:id/update';
+const ROUTE_ADVERTISEMENT_CREATE = '/advertisements/create';
+const ROUTE_ADVERTISEMENT = '/advertisements/:id';
+const ROUTE_ADVERTISEMENT_UPDATE = '/advertisements/:id/update';
 const ROUTE_ADVERTISEMENTS = '/advertisements';
 
 interface IRouteList {
