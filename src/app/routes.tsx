@@ -5,6 +5,7 @@ import {AdvertisementCreateContainer} from "./containers/Advertisement/Advertise
 const ROUTE_ADVERTISEMENT_CREATE = '/advertisements/create';
 const ROUTE_ADVERTISEMENT = '/advertisements/:id';
 const ROUTE_ADVERTISEMENTS = '/advertisements';
+const ROUTE_BASIC = '/';
 
 interface IRouteList {
     path: string
@@ -25,6 +26,11 @@ export const routeList: IRouteList[] = [
     },
     {
         path: ROUTE_ADVERTISEMENTS,
+        name: 'Advertisements',
+        Component: AdvertisementListContainer,
+    },
+    {
+        path: ROUTE_BASIC,
         name: 'Advertisements',
         Component: AdvertisementListContainer,
     },
