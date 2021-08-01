@@ -2,7 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import { useHistory, Link } from "react-router-dom";
 import {Typography} from "antd";
-import {advertisements_delete, advertisements_getById, photo_delete} from "../../../services/http/mainApi";
+import {
+    advertisements_delete,
+    advertisements_getById,
+    advertisements_update,
+    photo_delete
+} from "../../../services/http/mainApi";
 import {AdvertisementInterface} from "../../interfaces/GeneralInterfaces";
 import {AdvertisementItemComponent} from "../../components/Advertisement/AdvertisementItemComponent";
 
@@ -37,8 +42,19 @@ export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
         }
     };
     
-    const onUpdateHandler = () => {
-        console.log(advertisement);
+    const onUpdateHandler = async (photos) => {
+        if (advertisement) {
+            const reqBody = new FormData();
+            reqBody.append('title', advertisement?.title);
+            reqBody.append('description', advertisement?.description);
+            reqBody.append('_method', 'PATCH');
+            photos.forEach((photo) => reqBody.append('photos[]', photo.originFileObj));
+
+            const res = await advertisements_update(advertisement.id, reqBody);
+            if (res.status === 200) {
+                history.push(`/advertisements`);
+            }
+        }
     };
     
     const onImageRemoveHandler = async (id: number) => {

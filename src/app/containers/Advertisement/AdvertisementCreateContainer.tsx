@@ -23,7 +23,7 @@ export const AdvertisementCreateContainer: React.FC<unknown> = (props) => {
         <>
             <Link to={`/advertisements`}><Title level={4}>Advertisements List</Title></Link>
             <AdvertisementCreateComponent
-                onSsave={saveHandler}
+                onSave={saveHandler}
             />
         </>
 

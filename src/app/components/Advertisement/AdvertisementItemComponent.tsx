@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
-import {Card, Modal, Input, Space, Button, Image} from 'antd';
-import { DeleteTwoTone } from '@ant-design/icons';
+import {Card, Modal, Input, Space, Button, Image, Upload} from 'antd';
+import { DeleteTwoTone, UploadOutlined } from '@ant-design/icons';
 import {AdvertisementInterface} from "../../interfaces/GeneralInterfaces";
+import {dummyRequest} from "../../utils/utils";
 
 interface IAdvertisementItemComponent {
     advertisement: AdvertisementInterface | null
     onDelete: (id: number) => void;
     onImageRemove: (id: number) => void;
     onInputChange: (key: string, value: string) => void;
-    onUpdate: () => void;
+    onUpdate: (photos: {originFileObj: File}[]) => void;
 }
 
 export const AdvertisementItemComponent: React.FC<IAdvertisementItemComponent> = (props) => {
     const [deletingItemId, setDeletingItemId] = useState(0);
     const [deletingImageId, setDeletingImageId] = useState(0);
+    const [photos, setPhotos] = useState<{originFileObj: File}[]>([]);
     const {advertisement} = props;
 
     const showModal = (id: number) => {
@@ -40,6 +42,19 @@ export const AdvertisementItemComponent: React.FC<IAdvertisementItemComponent> =
 
     const handleImageRemoveCancel = () => {
         setDeletingImageId(0);
+    };
+
+    const uploadProps = {
+        name: 'file',
+        customRequest: dummyRequest,
+        multiple: true,
+        onChange(info) {
+            setPhotos(info.fileList)
+        },
+    };
+
+    const onUpdate = async () => {
+        props.onUpdate(photos)
     };
 
     return (
@@ -71,7 +86,12 @@ export const AdvertisementItemComponent: React.FC<IAdvertisementItemComponent> =
                                 }
                             </Space>
                         </div>
-                        <Button  type="primary" onClick={props.onUpdate}>Update</Button>
+                        {/*@ts-ignore*/}
+                        <Upload {...uploadProps}>
+                            <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                        </Upload>
+
+                        <Button  type="primary" onClick={onUpdate}>Update</Button>
                     </Space>
                 </Card> : <>Loading ...</>
             }

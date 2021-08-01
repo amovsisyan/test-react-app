@@ -11,5 +11,10 @@ export const advertisements_getById = (id: number): AxiosPromise<AdvertisementIn
 export const advertisements_store = (body: FormData): AxiosPromise<AdvertisementInterface> => mainApi.post(`advertisements`, body, {
   headers: { "Content-Type": "multipart/form-data" },
 });
+
+export const advertisements_update = (id: number, body: FormData): AxiosPromise<AdvertisementInterface> => mainApi.post(`advertisements/${id}`, body, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
+
 export const advertisements_delete = (id: number): AxiosPromise<AdvertisementInterface[]> => mainApi.delete(`advertisements/${id}`);
 export const photo_delete = (id: number): AxiosPromise<PhotoInterface> => mainApi.delete(`photos/${id}`);

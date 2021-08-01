@@ -1,17 +1,12 @@
 import React, {useState} from "react";
 import {Card, Input, Button, Space, Upload} from "antd";
 import { UploadOutlined } from '@ant-design/icons';
+import {dummyRequest} from "../../utils/utils";
 
 const { TextArea } = Input;
 
-const dummyRequest = ({ file, onSuccess }) => {
-    setTimeout(() => {
-        onSuccess("ok");
-    }, 0);
-};
-
 interface IAdvertisementCreateComponent {
-    onSsave: (title: string, description: string, photos: {originFileObj: File}[]) => void
+    onSave: (title: string, description: string, photos: {originFileObj: File}[]) => void
 }
 
 export const AdvertisementCreateComponent: React.FC<IAdvertisementCreateComponent> = (props) => {
@@ -29,7 +24,7 @@ export const AdvertisementCreateComponent: React.FC<IAdvertisementCreateComponen
     };
 
     const saveHandler = async () => {
-        props.onSsave(title, description, photos)
+        props.onSave(title, description, photos)
     };
 
     return (
