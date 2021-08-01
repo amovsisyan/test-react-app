@@ -6,7 +6,13 @@ export interface PhotoInterface {
     updated_at: string | null;
 }
 
-export interface AdvertisementInterface {
+export interface AdvertisementBodyInterface {
+    title: string;
+    description: string;
+    photos: File[]
+}
+
+export interface AdvertisementInterface{
     id: 1;
     title: string;
     description: string;
