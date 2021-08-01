@@ -3,10 +3,10 @@ import {AdvertisementItemContainer} from "./containers/Advertisement/Advertiseme
 import {AdvertisementCreateContainer} from "./containers/Advertisement/AdvertisementCreateContainer";
 import {AdvertisementUpdateContainer} from "./containers/Advertisement/AdvertisementUpdateContainer";
 
-const ROUTE_ADVERTISEMENTS = '/advertisements';
 const ROUTE_ADVERTISEMENT_CREATE = '/advertisement/create';
 const ROUTE_ADVERTISEMENT = '/advertisement/:id';
 const ROUTE_ADVERTISEMENT_UPDATE = '/advertisement/:id/update';
+const ROUTE_ADVERTISEMENTS = '/advertisements';
 
 interface IRouteList {
     path: string
@@ -15,11 +15,6 @@ interface IRouteList {
 }
 
 export const routeList: IRouteList[] = [
-    {
-        path: ROUTE_ADVERTISEMENTS,
-        name: 'Advertisements',
-        Component: AdvertisementListContainer,
-    },
     {
         path: ROUTE_ADVERTISEMENT_CREATE,
         name: 'Recording',
@@ -34,5 +29,10 @@ export const routeList: IRouteList[] = [
         path: ROUTE_ADVERTISEMENT_UPDATE,
         name: 'Share',
         Component: AdvertisementUpdateContainer,
+    },
+    {
+        path: ROUTE_ADVERTISEMENTS,
+        name: 'Advertisements',
+        Component: AdvertisementListContainer,
     },
 ]

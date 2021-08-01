@@ -1,34 +1,31 @@
-import React, { useEffect } from 'react';
-import { advertisements_getAll } from '../services/http/mainApi';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import {routeList} from "./routes";
+import {Layout} from "antd";
+
+const { Content } = Layout;
 
 export const App: React.FC<unknown> = () => {
-  const getAdvertisements = async () => {
-    const res = await advertisements_getAll();
-    console.log(res);
-  };
-
-  useEffect(() => {
-    getAdvertisements();
-  }, []);
-
   return (
     <BrowserRouter basename={'/'}>
-      <Switch>
-        {
-          routeList.map(({ path, Component }) => {
-            return <Route key={path} exact path={path}>
-              {({ match }) => {
-                return (
-                    // @ts-ignore
-                    <Component />
-                )
-              }}
-            </Route>
-          })
-        }
-      </Switch>
+          <Layout>
+              <Content style={{ padding: '24px 48px', minHeight: '100vh' }}>
+                  <Switch>
+                      {
+                          routeList.map(({ path, Component }) => {
+                              return <Route key={path} exact path={path}>
+                                  {({ match }) => {
+                                      return (
+                                          // @ts-ignore
+                                          <Component />
+                                      )
+                                  }}
+                              </Route>
+                          })
+                      }
+                  </Switch>
+              </Content>
+          </Layout>
     </BrowserRouter>
   );
 };
