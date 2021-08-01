@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { advertisements_getAll } from '../services/http/mainApi';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {routeList} from "./routes";
 
 export const App: React.FC<unknown> = () => {
   const getAdvertisements = async () => {
@@ -12,8 +14,21 @@ export const App: React.FC<unknown> = () => {
   }, []);
 
   return (
-    <div>
-      Hello world
-    </div>
+    <BrowserRouter basename={'/'}>
+      <Switch>
+        {
+          routeList.map(({ path, Component }) => {
+            return <Route key={path} exact path={path}>
+              {({ match }) => {
+                return (
+                    // @ts-ignore
+                    <Component />
+                )
+              }}
+            </Route>
+          })
+        }
+      </Switch>
+    </BrowserRouter>
   );
 };
