@@ -6,3 +6,5 @@ ReactDOM.render(
     <App />,
   document.getElementById('app')
 );
+
+// todo error handling/catching for app

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import { useHistory, Link } from "react-router-dom";
-import {Typography} from "antd";
+import {message, Typography} from "antd";
 import {
     advertisements_delete,
     advertisements_getById,
@@ -50,10 +50,12 @@ export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
             reqBody.append('_method', 'PATCH');
             photos.forEach((photo) => reqBody.append('photos[]', photo.originFileObj));
 
-            const res = await advertisements_update(advertisement.id, reqBody);
-            if (res.status === 200) {
-                history.push(`/advertisements`);
-            }
+            advertisements_update(advertisement.id, reqBody).then((res) => {
+                history.push(`/advertisements/${res.data.id}`);
+            }, (error) => {
+                const errMessage = Object.values(error.response.data.errors).map((err) => err).join('. ');
+                message.error(errMessage);
+            });
         }
     };
     
