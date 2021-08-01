@@ -7,3 +7,4 @@ const mainApi = axios.create({
 });
 
 export const advertisements_getAll = (): AxiosPromise<AdvertisementInterface[]> => mainApi.get('advertisements');
+export const advertisements_getById = (id: number): AxiosPromise<AdvertisementInterface> => mainApi.get(`advertisements/${id}`);
