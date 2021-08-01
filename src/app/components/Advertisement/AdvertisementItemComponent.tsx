@@ -35,7 +35,7 @@ export const AdvertisementItemComponent: React.FC<IAdvertisementItemComponent> =
 
     const handleImageRemoveOk = () => {
         props.onImageRemove(deletingImageId);
-        handleCancel();
+        handleImageRemoveCancel();
     };
 
     const handleImageRemoveCancel = () => {

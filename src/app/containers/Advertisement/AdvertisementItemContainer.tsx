@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import { useHistory, Link } from "react-router-dom";
 import {Typography} from "antd";
-import {advertisements_delete, advertisements_getById} from "../../../services/http/mainApi";
+import {advertisements_delete, advertisements_getById, photo_delete} from "../../../services/http/mainApi";
 import {AdvertisementInterface} from "../../interfaces/GeneralInterfaces";
 import {AdvertisementItemComponent} from "../../components/Advertisement/AdvertisementItemComponent";
 
@@ -39,7 +39,18 @@ export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
     
     const onUpdateHandler = () => {
         console.log(advertisement);
-    }
+    };
+    
+    const onImageRemoveHandler = async (id: number) => {
+        const res = await photo_delete(id);
+        if (res.status === 200) {
+            if (advertisement) {
+                const advertisementNew = {...advertisement};
+                advertisementNew.photos = advertisementNew.photos?.filter((photo) => photo.id !== id);
+                setAdvertisement(advertisementNew);
+            }
+        }
+    };
     
     return (
         <>
@@ -47,6 +58,7 @@ export const AdvertisementItemContainer: React.FC<unknown> = (props) => {
             <AdvertisementItemComponent
                 advertisement={advertisement}
                 onDelete={onDeleteHandler}
+                onImageRemove={onImageRemoveHandler}
                 onInputChange={onInputChangeHandler}
                 onUpdate={onUpdateHandler}
             />
