@@ -7,6 +7,7 @@ import {AdvertisementInterface} from "../../interfaces/GeneralInterfaces";
 
 interface IAdvertisementListComponent {
     advertisements: AdvertisementInterface[];
+    onDelete: (id: number) => void;
 }
 
 export const AdvertisementListComponent: React.FC<IAdvertisementListComponent> = (props) => {
@@ -18,7 +19,8 @@ export const AdvertisementListComponent: React.FC<IAdvertisementListComponent> =
     };
 
     const handleOk = () => {
-        setDeletingItemId(0);
+        props.onDelete(deletingItemId);
+        handleCancel();
     };
 
     const handleCancel = () => {
